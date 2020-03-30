@@ -25,7 +25,8 @@ def home(request):
             add = form.save() 
             i_id = add.id
 
-            quality = form.cleaned_data['quality']
+            quality = int(request.POST.get('quality'))
+            
 
             # From Id get original Image path for further conversion
             og_image = Images.objects.get(id=add.id)
@@ -34,7 +35,7 @@ def home(request):
             # Opening image and applying convesion operation   
             img = Image.open(image_url)
             new_name = int(time.time())
-            img.save('media/converted/{}.jpeg'.format(new_name), quality=int(quality))
+            img.save('media/converted/{}.jpeg'.format(new_name), quality=quality)
 
             # Calculating inage sizes
             original_size = os.stat('media/'+str(image_url)).st_size
@@ -43,9 +44,12 @@ def home(request):
             # Updating all data
             Images.objects.filter(id=i_id).update(converted_img='converted/{}.jpeg'.format(new_name), converted_size = converted_size, original_size = original_size)
             images = Images.objects.all().order_by('id').reverse()
+            
+            
             context = {
                     'form' : form, 
-                    'images': images[0]
+                    'images': images[0],
+                    'withquality': quality,
                     }
             #return redirect(request.META['HTTP_REFERER'],context)
             return render(request, 'index.html', context)

@@ -14,10 +14,15 @@ img{
     margin: 5px;
 }
 </style>
+<script>
+function updateTextInput(val) {
+          document.getElementById('textInput').innerText=val; 
+        }
+</script>
 {% endblock %}
-{% block title %}Gray Image Convertor and Compressor{% endblock %}
+{% block title %}Image Compressor{% endblock %}
 {% block header %}
-<center><h1>Gray Image Convertor and Compressor</h1></center><br>
+<center><h1>Image Compressor</h1></center><br>
 <div class="row">
     <div class="col-sm-12">
         <center>
@@ -25,8 +30,9 @@ img{
             <form method = "POST" enctype="multipart/form-data"> 
                 {% csrf_token %} 
                 {{ form.as_p }} 
-                <b>Note: More Effective range for compression is 30 - 65 (eg. 35) </b><br>
-                <button type="submit" class="btn btn-dark">Upload</button> 
+		<div id = "textInput"></div></p>
+                <button type="submit" class="btn btn-dark">Compress</button>
+
             </form> 
         </center>
     </div>
@@ -34,7 +40,7 @@ img{
 {% endblock %}
 {% block body %}
 
-<center><h2>Click on Image to view</h2></center><br>
+<center><h2>Click on Image to Download</h2></center><br>
 <div class="row ">
 {%if images%}
 <div class="col-sm-6">
@@ -47,7 +53,7 @@ img{
             Size: {{ images.original_size }}B
         </div>
         <div class="col-sm-6">
-            <h6>Converted (with {{images.quality}}%)</h6>
+            <h6>Compressed Quality : {{withquality}}</h6>
             <a href="{{ images.converted_img.url }}" download>
                 <img src="{{ images.converted_img.url }}" alt="Converted Image will come here">
             </a>
