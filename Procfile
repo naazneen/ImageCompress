@@ -1,1 +1,1 @@
-web: python ./manage.py runserver 
+web: python ./manage.py runserver 182.58.169.88
