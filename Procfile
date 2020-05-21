@@ -1,1 +1,3 @@
-web: python ./manage.py runserver 182.58.169.88
+web: gunicorn django_project.wsgi:application --log-file - --log-level debug
+python manage.py collectstatic --noinput
+manage.py migrate
