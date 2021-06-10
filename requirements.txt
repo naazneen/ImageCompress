@@ -22,7 +22,7 @@ wrapt==1.11.2
 WTForms==2.2.1
 distlib==0.3.0
 distributed==2.5.2
-Django==3.0.3
+Django==3.1.12
 django-crispy-forms==1.8.1
 django-range-slider==0.2.4
 
