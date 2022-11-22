@@ -13,7 +13,7 @@ PyYAML==5.3
 sqlparse==0.3.0
 tablib==1.1.0
 Jinja2==2.10.3
-Pillow==6.2.0
+Pillow==9.3.0
 widgetsnbextension==3.5.1
 win-inet-pton==1.1.0
 win-unicode-console==0.5
